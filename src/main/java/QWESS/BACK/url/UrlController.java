@@ -47,13 +47,13 @@ public class UrlController {
 
 
             if( phishing_probability > legitimate_probability) {
-                String prediction = "⚠악성 URL로 판별되었습니다!";
+                String prediction = "악성";
                 model.addAttribute("prediction",prediction);
                 model.addAttribute("probability",phishing_probability);
                 model.addAttribute("url",url);
                 return "home/scan-qr-url-ml-result";
             } else {
-                String prediction = "안전한 URL로 판별되었습니다!";
+                String prediction = "안전한";
                 model.addAttribute("prediction",prediction);
                 model.addAttribute("probability",legitimate_probability);
                 model.addAttribute("url",url);

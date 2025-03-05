@@ -1,0 +1,19 @@
+spring:
+  application:
+    name:BACK
+  datasource:
+    url: jdbc:mysql://infosec-db-2nd.cpk648yg4g5t.ap-northeast-2.rds.amazonaws.com:3306/QUESSDB?useSSL=false&autoReconnect=true&allowPublicKeyRetrival=true
+    username: admin
+    password: RUkiddingm2?
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Gradient Background</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #FF9500 0%, #7EB539 80%, #34C759 100%);
+            font-family: Circular, sans-serif;
+            position: relative;
+        }
+
+        .header {
+            position: fixed;
+            bottom: 30%;
+            right: 5%;
+            color: white;
+            text-align: right;
+            font-size: 48px;
+        }
+
+        .start-button {
+            position: fixed;
+            bottom: 24%;
+            right: 5%;
+            width: 230px;
+            height: 60px;
+            background-color: white;
+            color: #FF9500;
+            font-family: Circular, sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: #FF9500;
+            color: white;
+        }
+
+
+        .qr-left, .qr-right, .qr-left2, .qr-right2 {
+            position: absolute;
+            width: 50px;
+            height: auto;
+        }
+
+
+        .qr-left, .qr-right {
+            top: 30px;
+        }
+        .qr-left { left: 30px; }
+        .qr-right { right: 30px; }
+
+        .qr-left2, .qr-right2 {
+            bottom: 30px;
+        }
+        .qr-left2 { left: 30px; }
+        .qr-right2 { right: 30px; }
+
+        @media (max-width: 768px) {
+            .header {
+                font-size: 36px;
+            }
+            .start-button {
+                width: 160px;
+                height: 60px;
+                font-size: 24px;
+            }
+            .qr-left, .qr-right, .qr-left2, .qr-right2 {
+                width: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                font-size: 24px;
+            }
+            .start-button {
+                width: 96px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .qr-left, .qr-right, .qr-left2, .qr-right2 {
+                width: 28px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- 양 끝 QR 이미지 -->
+<img src="../../static/images/whiteqr.png" alt="Left QR" class="qr-left">
+<img src="../../static/images/whiteqr.png" alt="Right QR" class="qr-right">
+<img src="../../static/images/whiteqr.png" alt="Left QR 2" class="qr-left2">
+<img src="../../static/images/whiteqr.png" alt="Right QR 2" class="qr-right2">
+
+<h1 class="header">QUESS.</br>
+    GUESS YOUR QR CODE.</h1>
+<button class="start-button">Start</button>
+
+</body>
+</html>

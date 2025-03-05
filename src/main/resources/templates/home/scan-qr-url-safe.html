@@ -6,27 +6,239 @@
     <title>QR 코드 스캔 결과</title>
     <style>
         body {
-            background-color: black;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #FF9500 0%, #7EB539 80%, #34C759 100%);
+            font-family: Circular, sans-serif;
+            position: relative;
+        }
+        .header {
+            position: fixed;
+            top: 18%;
             color: white;
+            max-font-size: 64px;
+            font-size : 3.6vh;
+            font-family: Circular, sans-serif;
             text-align: center;
-            font-family: Arial, sans-serif;
         }
         .container {
-            margin-top: 20px;
+            position : absolute;
+            color:white;
+            font-family: Circular, sans-serif;
+            text-align: center;
+            font-weight: bold;
         }
         .message {
-            font-size: 1.5rem;
-            margin-top: 20px;
+            max-font-size: 32px;
+            font-size:3.6vh;
         }
+        .url{
+            max-font-size: 18px;
+            font-size : 2.4vh;
+        }
+        .qr-left, .qr-right, .qr-left2, .qr-right2 {
+            position: absolute;
+            width: 50px;
+            height: auto;
+        }
+
+
+        .qr-left, .qr-right {
+            top: 30px;
+        }
+        .qr-left { left: 30px; }
+        .qr-right { right: 30px; }
+
+        .qr-left2, .qr-right2 {
+            bottom: 30px;
+        }
+        .qr-left2 { left: 30px; }
+        .qr-right2 { right: 30px; }
+        #underbar {
+
+            position: absolute;
+            top: calc(18% + 2%); /* qr-result 아래 위치 (qr-result의 top 값 + 예상 텍스트 높이) */
+
+        }
+        #underbar2{
+            display: none;
+        }
+        #underbar3{
+            display:none;
+        }
+        #circle{
+            position : absolute;
+
+        }
+        #circle2{
+            display: none;
+            position : absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #smile{
+            position:absolute;
+            top: calc(18% + 5vh);
+        }
+        #smile2{
+            display: none;
+        }
+        @media (min-width: 1780px) {
+            #underbar{
+                left: 5%; /* qr-result와 동일한 left 값 적용 */
+                top: calc(25% + 15vh); /* qr-result 아래 위치 (qr-result의 top 값 + 예상 텍스트 높이) */
+
+            }
+            .header {
+
+                text-align: left;
+                top:25%;
+                left:5%;
+            }
+            #circle {
+                position: absolute;
+                right: 10%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            #smile{
+                top : calc(50% - 156px);
+                left: calc(90% - 285px);
+                transform: translate(-50%, -50%);
+
+            }
+            .container {
+                position: absolute;
+                top: 52%;
+                left: calc(90% - 285px); /* circle의 중앙을 기준으로 위치 조정 */
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+        }
+        /*노트북에서 화면 너비만 조정하는 경우*/
+        @media (max-width: 1780px) {
+
+            .header {
+                top: calc(18% - 10vh); /* 기존 top 값에서 200px 위로 이동 */
+            }
+            .header{
+                max-font-size: 18px;
+            }
+            #underbar{
+                top: 22%;
+            }
+            #circle{
+                top: calc(18% + 10vh);
+            }
+            #smile{
+                top : calc(18% + 15vh);
+            }
+        }
+        /*아이패드 */
+        @media (max-width: 768px) {
+            .qr-left, .qr-right, .qr-left2, .qr-right2 {
+                width: 36px;
+            }
+            .header{
+                font-size : 3.5vw;
+            }
+            #underbar{
+                display: none;
+            }
+            #underbar3{
+                display: block;
+                position:absolute;
+                top: calc(18% + 2.5vw);
+            }
+            #circle{
+                position : absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            #smile{
+                top : calc(18% + 12.5vw);
+            }
+            .container{
+                position : absolute;
+                top : 52%;
+                transform: translateY(-50%);
+
+            }
+        }
+
+        @media (max-width: 480px) {
+            .qr-left, .qr-right, .qr-left2, .qr-right2 {
+                width: 28px;
+            }
+            .header{
+                max-font-size : 12px;
+                font-size:2.5vh;
+            }
+            #underbar{
+                display:none;
+            }
+            #underbar2{
+                display: block;
+                position:absolute;
+                top: calc(18% + 20px);
+            }
+            #underbar3{
+                display:none;
+            }
+            #circle{
+                display: none;
+            }
+            #circle2{
+                display: block;
+                position:absolute;
+            }
+            #smile{
+                display: none;
+            }
+            #smile2{
+                display: block;
+                position: absolute;
+                top: 40%;
+                transform: translateY(-50%);
+
+            }
+            .message{
+                max-font-size: 12px;
+                font-size: 2.5vh;
+            }
+            .url{
+                max-font-size: 8px;
+                font-size: 1.5vh;
+            }
+        }
+
     </style>
 </head>
 <body>
+<!-- 양 끝 QR 이미지 -->
+<img src="/images/whiteqr.png" alt="Left QR" class="qr-left">
+<img src="/images/whiteqr.png" alt="Right QR" class="qr-right">
+<img src="/images/whiteqr.png" alt="Left QR 2" class="qr-left2">
+<img src="/images/whiteqr.png" alt="Right QR 2" class="qr-right2">
 
-<h1>QR 코드 스캔 결과</h1>
+<h3 class="header">AI 모델이</br>QR 코드를 판별한 결과입니다. </h3>
+<img src = "/images/underbar_500.png" alt = "underbar" id = "underbar">
+<img src = "/images/underbar_320.png" alt = "underbar2" id = "underbar2">
+<img src = "/images/underbar_430.png" alt = "underbar3" id = "underbar3">
+
+
+<img src = "/images/smileyface.png" alt = "smile" id = "smile">
+<img src = "/images/smileyface_50.png" alt = "smile2" id = "smile2">
+<img src = "/images/resultcircle.png" alt = "circle" id = "circle">
+<img src = "/images/resultcircle_320.png" alt = "circle2" id = "circle2">
+
 
 <div class="container">
     <p class="message" th:text="${message}"></p>
-    <p>저장된 URL: <a th:href="${url.url}" th:text="${url.url}" target="_blank"></a></p>
+    <p class = "url">URL: <a th:href="${url.url}" th:text="${url.url}" target="_blank"></a></p>
 </div>
 
 </body>
